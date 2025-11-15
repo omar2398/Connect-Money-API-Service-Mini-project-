@@ -15,3 +15,6 @@ security:
   jwt:
     secret_key: "omar_secret_key_01097094971"
     expiration_time: 3600000
+  client-credentials:
+    max-number-of-attempts: 5
+    lockout-duration-time: 300 #5 minutes
