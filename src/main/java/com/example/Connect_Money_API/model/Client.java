@@ -28,4 +28,7 @@ public class Client {
     @CreationTimestamp
     @Column(updatable = false)
     private LocalDateTime createdAt;
+    @Column(nullable = false)
+    private Integer failedAttempts = 0;
+    private LocalDateTime lockedUntil;
 }
