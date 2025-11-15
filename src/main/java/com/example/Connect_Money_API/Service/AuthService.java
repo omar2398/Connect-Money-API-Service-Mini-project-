@@ -64,6 +64,13 @@ public class AuthService {
 
         String token = jwtService.generateToken(client.getClientId());
 
+        if(client.getFailedAttempts() >= 1){
+            client.setFailedAttempts(0);
+            client.setLockedUntil(null);
+            clientRepository.save(client);
+        }
+
+
         return TokenResponse.builder()
                 .accessToken(token)
                 .expiresIn(tokenExpiration)
