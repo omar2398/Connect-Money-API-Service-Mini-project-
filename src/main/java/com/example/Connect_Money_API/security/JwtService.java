@@ -12,10 +12,10 @@ import java.util.Hashtable;
 
 @Service
 public class JwtService {
-    @Value("$security.jwt.secret_key")
+    @Value("${security.jwt.secret_key}")
     private String secret;
 
-    @Value("$security.jwt.expiration_time")
+    @Value("${security.jwt.expiration_time}")
     private Long expiration;
 
     private SecretKey getSigninKey(){
