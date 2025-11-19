@@ -1,5 +1,7 @@
 package com.example.Connect_Money_API.security;
 
+import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -15,13 +17,11 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
     private final AuthFilter authFilter;
+    private final RateLimitFilter rateLimitFilter;
 
-    @Autowired
-    public SecurityConfig(AuthFilter authFilter){
-        this.authFilter = authFilter;
-    }
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity httpSecurity) throws Exception{
@@ -32,7 +32,8 @@ public class SecurityConfig {
                                 requestMatchers("/v1/protocol/openid-connect/token").permitAll()
                                 .requestMatchers("/v1/**").authenticated()
                                 .anyRequest().denyAll()
-                ).addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
+                ).addFilterBefore(rateLimitFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(authFilter, UsernamePasswordAuthenticationFilter.class);
 
         return httpSecurity.build();
     }

@@ -18,3 +18,7 @@ security:
   client-credentials:
     max-number-of-attempts: 5
     lockout-duration-time: 300 #5 minutes
+  rate-limit:
+    capacity: 100
+    refill-tokens: 10
+    refill-duration: 60
