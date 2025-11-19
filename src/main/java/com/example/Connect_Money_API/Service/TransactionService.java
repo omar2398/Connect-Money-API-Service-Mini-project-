@@ -25,7 +25,7 @@ public class TransactionService {
 
     @Transactional
     public void transactionProcess(String idempotencyKey, TransactionRequest request){
-        var existingKey = idempotencyKeyRepository.findIdempotencyKeyByIdempotencyKeyId(idempotencyKey);
+        var existingKey = idempotencyKeyRepository.findIdempotencyKeyByIdempotencyKey(idempotencyKey);
 
         //To avoid duplication of the transaction
         if(existingKey.isPresent() && existingKey.get().getProcessed()){
