@@ -37,5 +37,5 @@ server:
     key-store-type: PKCS12
     key-alias: connectmoney
   error:
-    include-message: never
+   include-message: never
     include-stacktrace: never

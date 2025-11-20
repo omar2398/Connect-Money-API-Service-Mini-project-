@@ -1,9 +1,11 @@
 package com.example.Connect_Money_API.dto;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
+
 import jakarta.validation.constraints.Pattern;
 import lombok.Data;
-import org.hibernate.validator.constraints.NotBlank;
 
 @Data
 public class TokenRequest {
